@@ -23,3 +23,5 @@ def setMatrixOnes(MAT, n, m):
 						if [z,j] not in position:
 							position.append([z,j])
 					MAT[z][j]=1
+
+#Optimality problem occured
