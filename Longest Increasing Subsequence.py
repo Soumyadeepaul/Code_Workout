@@ -18,6 +18,8 @@ class Solution:
         while i<n:
             j=i-1
             while j>-1:
+                # break because  the length before that j position is smaller then memo[i]
+                # then how we will get greater value then memo[i]
                 if memo[i]>j+1:
                     break
                 if arr[j]<arr[i]:
