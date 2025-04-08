@@ -12,7 +12,7 @@ def cutRod(price, n):
             if i>j:
                 dp[i][j]=dp[i-1][j]
             else:
-                dp[i][j]=max(dp[i-1][j],price[i-1]+max(dp[i-1][j-i],dp[i][j-i]))
+                dp[i][j]=max(dp[i-1][j],price[i-1]+dp[i][j-i])
     return dp[n][len(price)]
 
 # Taking input using fast I/O.
