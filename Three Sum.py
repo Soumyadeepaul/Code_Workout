@@ -20,4 +20,29 @@ def triplet(n: int, arr: [int]) -> [[int]]:
             setList.add(arr[j])
     return triplet
 
+
+
+
+
+#####################################################
+#https://leetcode.com/problems/3sum/?envType=study-plan-v2&envId=top-interview-150
+
+
+class Solution:
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
+        result=set()
+        nums.sort()
+        for i in range(len(nums)-2):
+            js=set()
+            js.add(nums[i+1])
+            val1=nums[i]
+            for k in range(i+2,len(nums)):
+                val3=nums[k]
+                find=0-(val1+val3)
+                if find in js:
+                    triplet=(val1,find,val3)
+                    result.add(triplet) #SET + TUPLE
+                js.add(val3)
+
+        return list(result)
             
