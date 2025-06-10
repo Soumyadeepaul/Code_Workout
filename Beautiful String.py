@@ -30,3 +30,43 @@ def makeBeautiful(str):
 			new2+='0'
 
 	return min(editDistance(str,new1),editDistance(str,new2))
+
+
+
+
+##############################################################################################
+
+
+def makeBeautiful(str):
+	# Write your code here
+	start0=''
+	start1=''
+	l=len(str)
+	alt=0
+	for i in range(l):
+
+		if alt==0:
+			start0+='0'
+			start1+='1'
+			alt=1
+		else:
+			start1+='0'
+			start0+='1'
+			alt=0
+	start0Min=0
+	start1Min=0
+	for i in range(l):
+		#start 0
+		
+		if start0[i]==str[i]:
+			pass
+		else:
+			start0Min+=1
+
+
+		#start1
+		if start1[i]==str[i]:
+			pass
+		else:
+			start1Min+=1
+	return min(start0Min,start1Min)
