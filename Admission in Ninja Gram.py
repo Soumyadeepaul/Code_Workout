@@ -13,3 +13,11 @@ def ninjaGram(str):
     if len(element)==26:
         return True
     return False
+################################################################################
+
+def ninjaGram(str):
+
+    # Write your Code Here.
+    # Return a boolean variable 'True' or 'False' denoting the answer
+    str=str.lower()
+    return True if len(set(str))==26 else False
