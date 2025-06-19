@@ -58,4 +58,81 @@ def addBinaryString(a, b, n, m):
     if carry=='1':
         ans='1'+ans
     return ans
-    
+
+
+############################################################################
+
+#https://leetcode.com/problems/add-binary/?envType=study-plan-v2&envId=top-interview-150
+class Solution:
+    def addBinary(self, a: str, b: str) -> str:
+        
+        i=len(a)-1
+        j=len(b)-1
+        carry=0
+        new=''
+        while i>-1 and j>-1:
+            if a[i]=='1' and b[j]=='1' and carry==1:
+                new='1'+new
+                carry=1
+            elif a[i]=='1' and b[j]=='1' and carry==0:
+                new='0'+new
+                carry=1
+            elif a[i]=='1' and b[j]=='0' and carry==1:
+                new='0'+new
+                carry=1
+            elif a[i]=='1' and b[j]=='0' and carry==0:
+                new='1'+new
+                carry=0
+            
+            elif a[i]=='0' and b[j]=='1' and carry==1:
+                new='0'+new
+                carry=1
+            elif a[i]=='0' and b[j]=='1' and carry==0:
+                new='1'+new
+                carry=0
+            elif a[i]=='1' and b[j]=='1' and carry==0:
+                new='0'+new
+                carry=1
+            elif a[i]=='0' and b[j]=='0' and carry==1:
+                new='1'+new
+                carry=0
+            elif a[i]=='0' and b[j]=='0' and carry==0:
+                new='0'+new
+                carry=0
+            i-=1
+            j-=1
+        while i>-1:
+            if a[i]=='0' and carry==0:
+                new='0'+new
+                carry=0
+            elif a[i]=='0' and carry==1:
+                new='1'+new
+                carry=0
+            elif a[i]=='1' and carry==0:
+                new='1'+new
+                carry=0
+            elif a[i]=='1' and carry==1:
+                new='0'+new
+                carry=1
+            i-=1
+        
+        while j>-1:
+            if b[j]=='0' and carry==0:
+                new='0'+new
+                carry=0
+            elif b[j]=='0' and carry==1:
+                new='1'+new
+                carry=0
+            elif b[j]=='1' and carry==0:
+                new='1'+new
+                carry=0
+            elif b[j]=='1' and carry==1:
+                new='0'+new
+                carry=1
+            j-=1
+        
+        if carry==1:
+            new='1'+new
+            
+
+        return new
