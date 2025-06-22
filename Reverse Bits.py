@@ -19,3 +19,25 @@ def reverseBits(n):
         present=present*2
     return result
 
+####################################################
+#https://leetcode.com/problems/reverse-bits/description/?envType=study-plan-v2&envId=top-interview-150
+
+class Solution:
+    def reverseBits(self, n: int) -> int:
+        
+        x=''
+        while n:
+            x+=str(n%2)
+            n=n//2
+
+        while len(x)<32:
+            x+='0'
+        val=0
+        idx=1
+        while x:
+            if x[-1]=='1':
+                val+=idx
+            x=x[:-1]
+            idx=idx*2
+        return val
+
