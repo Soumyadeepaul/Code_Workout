@@ -31,7 +31,8 @@ public:
     void subset(vector<int>&nums,vector<vector<int>> &result, int index, vector<int> bucket,int l){
         result.push_back(bucket);
         for(int i=index;i<l;i++){
-            if(i!=index && nums[i]==nums[i-1]){ //not that same index and also same as previous element -> duplicate
+            if(i!=index && nums[i]==nums[i-1]){ //not that same index and also same as previous element -> duplicate  
+                //not that same index and also same as previous element -> duplicate...... i!=index means... atleast once the element will enter
                 continue;
             }
             bucket.push_back(nums[i]);
