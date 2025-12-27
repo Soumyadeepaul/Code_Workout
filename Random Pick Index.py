@@ -1,4 +1,4 @@
-//https://leetcode.com/problems/random-pick-index/description/
+#https://leetcode.com/problems/random-pick-index/description/
 
 class Solution:
     def __init__(self, nums: List[int]):
