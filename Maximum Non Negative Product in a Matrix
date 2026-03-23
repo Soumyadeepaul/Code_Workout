@@ -1,0 +1,37 @@
+//https://leetcode.com/problems/maximum-non-negative-product-in-a-matrix/description/?envType=daily-question&envId=2026-03-23
+
+
+class Solution {
+public:
+
+    int maxProductPath(vector<vector<int>>& grid) {
+        vector<vector<pair<long long,long long>>> dp(grid.size(),vector<pair<long long,long long>> (grid[0].size(),{0,0}));
+        for(int i=grid.size()-1;i>-1;i--){
+            for(int j=grid[0].size()-1;j>-1;j--){
+                if(i==grid.size()-1 && j==grid[0].size()-1){
+                    dp[i][j]={grid[i][j],grid[i][j]};
+                    continue;
+                }
+                else if(i+1<grid.size() && j+1==grid[0].size()){
+                    long long val1=dp[i+1][j].first * grid[i][j];
+                    dp[i][j]={val1,val1};
+                }
+                else if(i+1==grid.size() && j+1<grid[0].size()){
+                    long long val2=dp[i][j+1].first * grid[i][j];
+                    dp[i][j]={val2,val2};
+                }
+
+                else{
+                    long long val1=dp[i+1][j].first * grid[i][j];
+                    long long val2=dp[i][j+1].first * grid[i][j];
+                    long long val3=dp[i+1][j].second * grid[i][j];
+                    long long val4=dp[i][j+1].second * grid[i][j];
+                    dp[i][j]={max({val1,val2,val3,val4}),min({val1,val2,val3,val4})};
+                }
+            }
+        }
+        int p=1e9 +7;
+        return (dp[0][0].first<0) ? -1 : dp[0][0].first%p;
+
+    }
+};
