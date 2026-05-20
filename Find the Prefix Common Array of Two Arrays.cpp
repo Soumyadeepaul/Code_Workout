@@ -41,3 +41,23 @@ public:
         return C;
     }
 };
+
+
+///////////////////////////////////////////////
+
+class Solution {
+public:
+    vector<int> findThePrefixCommonArray(vector<int>& A, vector<int>& B) {
+        unordered_map<int,int> unique;
+        vector<int> result(A.size(),0);
+        int found=0;
+        for(int i=0;i<A.size();i++){
+            unique[A[i]]++;
+            unique[B[i]]++;
+            if(unique[A[i]]==2) found++;
+            if(A[i]!=B[i] && unique[B[i]]==2) found++;
+            result[i]=found;
+        }
+        return result;
+    }
+};
