@@ -37,3 +37,29 @@ public:
         return result+1;
     }
 };
+
+
+/////////////////////////////////////////////////////////////////////
+
+class Solution {
+public:
+    int result=0;
+    unordered_map<int,int> map; 
+    int find(int x){
+        if(!map.count(x)) return map[x+1]=x+1;
+        else if(map[x]==-1) map[x]=find(x-1);
+        return map[x]; 
+    }
+    void uni(int x, int y){
+        int f=find(y);
+        map[x]=f;
+        result=max(result,x-map[x]+1);
+    }
+    int longestConsecutive(vector<int>& nums) {
+        for(int i=0;i<nums.size();i++) map[nums[i]]=-1;
+
+        for(int i:nums)
+            uni(i,i-1);
+        return result;
+    }
+};
