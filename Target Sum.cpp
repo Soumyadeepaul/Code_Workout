@@ -27,3 +27,44 @@ public:
         return result;
     }
 };
+
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+
+class Solution {
+public:
+    // int result=0;
+    // void helper(vector<int>& nums, int target, int idx, int summ){
+    //     if(idx==nums.size()){
+    //         if(summ==target) result++;
+    //         return;
+    //     }
+    //     helper(nums,target, idx+1,summ+nums[idx]);
+    //     helper(nums,target, idx+1,summ-nums[idx]);
+    // }
+    // int findTargetSumWays(vector<int>& nums, int target) {
+    //     helper(nums,target,0,0);
+    //     return result;
+    // }
+
+    int result=0;
+    int findTargetSumWays(vector<int>& nums, int target) {
+        int l=nums.size();
+        vector<unordered_map<int,int>> dp(l);
+        dp[l-1][-nums[l-1]]+=1;  // +0 and -0 should count 2
+        dp[l-1][nums[l-1]]+=1;
+        for(int i=nums.size()-2;i>-1;i--){
+            unordered_map<int,int> &temp=dp[i+1];
+
+            for(auto p:temp){
+                dp[i][p.first+nums[i]]+=p.second;
+                dp[i][p.first-nums[i]]+=p.second;
+            }
+        }
+
+        return dp[0][target];
+    }
+};
