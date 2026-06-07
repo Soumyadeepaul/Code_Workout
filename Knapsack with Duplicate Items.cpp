@@ -24,3 +24,30 @@ class Solution {
         return result;
     }
 };
+
+
+
+//////////////////////////////////////////////////////////////
+
+
+//https://www.geeksforgeeks.org/problems/knapsack-with-duplicate-items4201/1
+
+
+class Solution {
+  public:
+    int knapSack(vector<int>& val, vector<int>& wt, int capacity) {
+        // code here
+        
+        vector<int>dp(capacity+1,0);
+        for(int i=0;i<wt.size();i++){
+            for(int j=1;j<=capacity;j++){ // forward means duplicate accepted
+                if(j<wt[i]) {}
+                else{
+                    dp[j]=max(dp[j],val[i]+dp[j-wt[i]]);
+                }
+            }
+        }
+        return dp[capacity];
+        
+    }
+};
